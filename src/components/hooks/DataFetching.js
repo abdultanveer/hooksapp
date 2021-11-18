@@ -4,6 +4,7 @@ import axios from 'axios'
 function DataFetching() {
     const [post,setPost] = useState({})
     const [id,setId] = useState(1)
+    const [idFromButtonClick,setIdFromButtonClick] = useState(1)
 
     /**
      * ///useEffect is about the lifecycle methods of a class component --
@@ -12,7 +13,7 @@ function DataFetching() {
     useEffect(    
         //the arrow function below will get executed after every render
         () => {
-            axios.get(`https://jsonplaceholder.typicode.com/posts/${id}`)
+            axios.get(`https://jsonplaceholder.typicode.com/posts/${idFromButtonClick}`)
             .then( res => {
                 console.log(res)
                 setPost(res.data)
@@ -21,10 +22,12 @@ function DataFetching() {
                 console.log(err)
             })
         },
-        [id] //run this useEffect hook only once ie after componentDidMount
+        [idFromButtonClick] //run this useEffect hook only once ie after componentDidMount
     )
 
-
+        const handleClick = () => {
+            setIdFromButtonClick(id)
+        }
 
     return (
         <div>
@@ -33,6 +36,7 @@ function DataFetching() {
             value = {id}
             onChange = { e => setId(e.target.value)}
             />
+            <button type = "button" onClick = {handleClick}> fetch post</button>
             <div>{post.title}</div>
            {/* <ul>{
                 posts.map(
