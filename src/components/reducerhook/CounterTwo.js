@@ -7,8 +7,8 @@ const initialState = {  //currently this object has only one partition called fi
 
 const reducer = (state, action) => {
     switch (action.type) {
-        case 'increment': return { firstCounter: state.firstCounter + 1 }
-        case 'decrement': return { firstCounter: state.firstCounter - 1 }
+        case 'increment': return { firstCounter: state.firstCounter + action.value }
+        case 'decrement': return { firstCounter: state.firstCounter - action.value}
         case 'reset': return initialState
         default: return state
     }
@@ -22,12 +22,21 @@ function CounterTwo() {
             <div> Count - {count.firstCounter}</div>
             <button
                 onClick={
-                    () => dispatch({ type: 'increment' })
+                    () => dispatch({ type: 'increment', value:1 })
                 }> Increment</button>
             <button
                 onClick={
-                    () => dispatch({ type: 'decrement' })
+                    () => dispatch({ type: 'decrement' , value:1})
                 }> Decrement</button>
+
+                <button
+                onClick={
+                    () => dispatch({ type: 'increment', value:5 })
+                }> Increment 5</button>
+            <button
+                onClick={
+                    () => dispatch({ type: 'decrement', value:5 })
+                }> Decrement 5 </button>
             <button
                 onClick={
                     () => dispatch({ type: 'reset' })
