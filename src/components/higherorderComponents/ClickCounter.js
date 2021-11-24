@@ -1,30 +1,19 @@
 import React, { Component } from 'react'
+import UpdatedComponent from './withCounter'
 
 //demo - life b4 higher order components came into picture
  class ClickCounter extends Component {
-     constructor(props) {
-         super(props)
-     
-         this.state = {
-              count: 0
-         }
-     }
-
-     incrementCount = () => {
-         this.setState(prevState => {
-             return { count: prevState.count + 1}
-         })
-     }
+    
      
     render() {
-       const {count} = this.state
+       const {countKey, incrementCount} = this.props
         return (
             <div>
                
-                <button onClick = {this.incrementCount}>clicked {count} times</button>
+                <button onClick = {incrementCount}>clicked {countKey} times</button>
             </div>
         )
     }
 }
 
-export default ClickCounter
+export default UpdatedComponent(ClickCounter)
