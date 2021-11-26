@@ -13,6 +13,7 @@ function App() {
   return (
 
     <div className="App">
+    
       <Counter1/>
       <Counter2/>
     </div>
